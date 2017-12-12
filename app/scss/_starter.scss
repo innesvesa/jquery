@@ -1,0 +1,109 @@
+/**------------
+ * FUNCTIONS
+ ------------*/
+
+@function columns($columns, $nbColumns:$nbMaxColumns) {
+    $width: 100% / $nbColumns * $columns;
+    @return $width;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container-fluid {
+    width: $container-fluid-width;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.container {
+    max-width: $container-width;
+    margin: auto;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.container-fluid>.container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+}
+
+.row {
+    margin-left: -$gutter-width;
+    margin-right: -$gutter-width;
+}
+
+.row:before,
+.row:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+
+[class*="col-xs-"] {
+    float: left;
+    position: relative;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+@for $i from 1 through $nbMaxColumns {
+    .col-xs-#{$i} {
+        width: columns($i);
+    }
+}
+
+
+/**------------
+ * TABS SCREENS
+ ------------*/
+
+@media all and (min-width: $sm-screen-breack-point) {
+    @for $i from 1 through $nbMaxColumns {
+        .col-sm-#{$i} {
+            width: columns($i);
+        }
+    }
+}
+
+
+/**------------
+ * MEDIUM SCREENS
+ ------------*/
+
+@media all and (min-width: $md-screen-breack-point) {
+    @for $i from 1 through $nbMaxColumns {
+        .col-md-#{$i} {
+            width: columns($i);
+        }
+    }
+}
+
+
+/**------------
+ * LARGE SCREENS
+ ------------*/
+
+@media all and (min-width: $lg-screen-breack-point) {
+    @for $i from 1 through $nbMaxColumns {
+        .col-lg-#{$i} {
+            width: columns($i);
+        }
+    }
+}
