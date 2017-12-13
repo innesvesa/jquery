@@ -1,0 +1,137 @@
+// custom  styples onlty form this website
+
+/*==========================
+	layout
+*/
+
+html {
+    font-size: $base-font-size;
+}
+
+.content {
+    padding-top: $base-font-size*2;
+    padding-bottom: $base-font-size;
+}
+
+
+/*==========================
+	header
+*/
+
+body>header {
+    min-height: 50px;
+    padding-top: $gutter-width;
+    padding-bottom: $gutter-width;
+    background: $color4;
+}
+
+nav {
+    display: none;
+    ul {
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    li {
+        list-style: none;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+    a {
+        text-decoration: none;
+        color: $color1;
+        font-size: $p-fz;
+    }
+    a:hover,
+    .active {
+        transition: all .3s;
+        color: $color2;
+    }
+}
+
+
+/*=========================
+	main
+*/
+
+.content {
+    background: lighten($color4, 70%);
+    h1 {
+        color: $color2;
+        font-size: $h1-fz;
+    }
+    p {
+        color: $color4;
+        font-size: $p-fz;
+    }
+}
+
+
+/*=========================
+	footer
+*/
+
+body>footer {
+    background: $color4;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    a {
+        color: $color1;
+        font-size: $p-fz;
+    }
+    ul {
+        margin: 0;
+    }
+    li {
+        list-style: none;
+        padding-top: .2em;
+        padding-bottom: .2em;
+    }
+    a:hover {
+        transition: all .3s;
+        color: $color2;
+    }
+}
+
+
+/*=======================
+	tablettes et +
+*/
+
+@media all and (min-width: $sm-screen-breack-point) {
+    html {
+        font-size: $base-font-size+1;
+    }
+    /*============
+		header
+	*/
+    nav {
+        display: block;
+    }
+    nav li {
+        display: inline-block;
+        margin-right: 1em;
+    }
+}
+
+
+/*=======================
+	notebook et +
+*/
+
+@media all and (min-width: $md-screen-breack-point) {
+    html {
+        font-size: $base-font-size+2;
+    }
+}
+
+
+/*=======================
+	larges screens 
+*/
+
+@media all and (min-width: $lg-screen-breack-point) {
+    html {
+        font-size: $base-font-size+3;
+    }
+}

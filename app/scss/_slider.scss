@@ -1,0 +1,38 @@
+@if $use-slider==true {
+    .slider {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        ul {
+            padding-left: 0;
+            width: 9999px;
+            position: relative;
+            margin: 0;
+        }
+        li {
+            list-style: none;
+            float: left;
+        }
+        span {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); // permet de centrer les icones en fonction du milieu du div slider
+            cursor: pointer;
+            background: rgba(0, 0, 0, .5);
+            color: $color1;
+            font-size: 1.5rem;
+            transition: all.3s;
+        }
+        span:hover {
+            background: rgba(0, 0, 0, .8);
+            font-size: 1.7rem;
+        }
+        .icon-navigate_before {
+            left: 5%;
+        }
+        .icon-navigate_next {
+            right: 5%;
+        }
+    }
+}

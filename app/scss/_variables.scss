@@ -40,8 +40,10 @@ $h1-fz: $h3-fz*$ratio;
  ------------*/
 
 $grid-debug: false;
-$use-slider: false;
-$use-lightbox: false;
+$use-slider: true;
+$use-lightbox: true;
 $use-accordeon: false;
 $use-form: false;
 $use-pannel-admin: false;
+$use-burger: true;
+$use-lightbox:true;

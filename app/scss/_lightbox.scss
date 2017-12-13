@@ -1,0 +1,65 @@
+@if $use-lightbox==true {
+    .galerie figure {
+        padding-left: 0;
+        padding-right: 0;
+        overflow: hidden; // pour que l'image ne sorte pas du cadre
+        img {
+            transition: all .3s;
+        }
+        img:hover {
+            cursor: pointer;
+            transform: scale(1.2, 1.2);
+        }
+    }
+    .lightbox {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: rgba(0, 0, 0, .7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        .cadre {
+            width: 90%;
+            background: $color1;
+            border: 1px solid $color1;
+            position: relative;
+        }
+        span {
+            position: absolute;
+            top: 50%;
+            color: $color1;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+        .icon-navigate_before {
+            left: 2%;
+            transform: translateY(-50%);
+        }
+        .icon-navigate_next {
+            right: 2%;
+            transform: translateY(-50%);
+        }
+        .icon-close {
+            top: 0;
+            right: 0;
+            font-size: 1.5rem;
+        }
+        figurecaption {
+            padding: .5rem;
+        }
+    }
+    @media all and (min-width: $sm-screen-breack-point) {
+        .lightbox .cadre {
+            width: 80%;
+        }
+    }
+    @media all and (min-width: $lg-screen-breack-point) {
+        .lightbox .cadre {
+            width: 50%;
+        }
+    }
+}

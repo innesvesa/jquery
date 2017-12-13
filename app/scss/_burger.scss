@@ -1,0 +1,14 @@
+@if $use-burger==true {
+    body>header span {
+        position: absolute;
+        top: $gutter-width;
+        right: $gutter-width;
+        color: $color1;
+        font-size: $base-font-size*1.5;
+    }
+    @media all and (min-width: $sm-screen-breack-point) {
+        body>header span {
+            display: none;
+        }
+    }
+}
