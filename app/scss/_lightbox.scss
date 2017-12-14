@@ -51,6 +51,26 @@
         figurecaption {
             padding: .5rem;
         }
+        .list-puces {
+            padding: .3rem;
+            text-align: center;
+            border-top: 1px solid lighten($color4, 70%);
+            li {
+                display: inline-block;
+                list-style: none;
+                font-size: 1.5rem;
+                margin: .5rem;
+                border-top: 1px solid $color4;
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                cursor: pointer;
+            }
+            li:hover,
+            .puce-active {
+                background: $color4;
+            }
+        }
     }
     @media all and (min-width: $sm-screen-breack-point) {
         .lightbox .cadre {

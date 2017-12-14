@@ -32,68 +32,32 @@
  * étape 1 : créer une fonction qui remplace l'im dans la lightbox
  *  et l'appeler à chaque fois que nécessaire
  * 
- * 
- * GENERER LES PUCES EN FONCTION DU NOMBRE D' IMAGES
- * étape 1 : déclarer une variable qui contiendra un ensemble UL LI 
- * étape 2 : créer fonction pour générer l'ensemble UL LI
- * étape 3 : créer le bloc UL 
- * étape 4 : créer autant de LI qu'il y a d'images dans la galerie
- * étape 5 : ajouter l'ensemble UL LI dans le DOM sous la lightbox
- * 
- * ACTIVER LA PUCE QUI CORRESPOND 0 L IMAGE CLIQUEE
- * étape 1 : créer une fonction qui active une puce
- * - supprime la class puce-active sur tous les LI
- * -ajoute la class puce-active sur le LI qui a le même index que indexImg
- * étape 2 appeler la fonction quand on cliqu sur une image de la galerie
- * - appeler la focntion quand on clique sur les boutons next et before
- * 
- * 
- * CHANGER IMAGE QUAND ON CLIQUE SUR UNE PUCE
- * étape 1 : récupérer l'index de puce cliquée et l'affecter à indexImg
- * étape 2 appeler changImg() et activePuce()
- * 
- * 
- * 
  */
 
 
 $(function() {
-    let newSrc, nbImg, indexImg, listPuces;
+    let newSrc;
+    let nbImg;
+    let indexImg;
+
 
     nbImg = $('.galerie img').length;
+    // console.log(nbImg); affiche le nb image
     // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
-    // pour évitéer les remontés de fonction hosting
-    // lightboxImg = function() { == lightboxImg = ()=> évite les remonté de fonction
-    lightboxImg = () => {
+    lightboxImg = function() {
         newSrc = $('.galerie img').eq(indexImg).attr('src');
         $('.lightbox img').attr('src', newSrc);
-        console.log('index :' + indexImg);
-        console.log('prochain image :' + newSrc);
-    }
 
-    generatePuces = () => {
-        listPuces = '<ul class="list-puces">';
-        for (let i = 0; i < nbImg; i++) {
-            listPuces += '<li></li>';
-        }
-        listPuces += '</ul>';
-        // console.log(listPuces);
-        $('.lightbox .cadre').append(listPuces);
 
     }
-    activePuce = () => {
-        let list = $('.lightbox ul li');
-        list.removeClass('puce-active');
-        list.eq(indexImg).addClass('puce-active');
-        console.log('active puce : ' + indexImg);
-    }
-    generatePuces();
-
 
     $('.galerie img').click(function() {
+        newSrc = $(this).attr('src');
         indexImg = $('.galerie img').index($(this)); // récupération de l'index de l'image
+
+        // console.log(indexImg);
         lightboxImg();
-        activePuce();
+        // $('.lightbox img').attr('src', newSrc); remplace par un fonction
         $('.lightbox').fadeIn().css({ 'display': 'flex' });
     });
 
@@ -102,25 +66,30 @@ $(function() {
     });
 
     $('.cadre .icon-navigate_next').click(function() {
-
+        // if (indexImg < nbImg - 1) {
+        //     indexImg++;
+        // } else {
+        //     indexImg = 0;
+        // }
         indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
+        // console.log($('.galerie img').eq(0).attr('src')); // eq ciblé une image en particulier pour récupérer l'image
+        // newSrc = $('.galerie img').eq(indexImg).attr('src');
         lightboxImg();
-        activePuce();
-
+        // $('.lightbox img').attr('src', newSrc);
+        console.log('index :' + indexImg);
+        console.log('prochain image :' + newSrc);
 
     });
 
     $('.cadre .icon-navigate_before').click(function() {
+        // indexImg = (indexImg - 1) % nbImg; // ici le navigateur comprend qu'il doit parcourrir le array à l'envere
         indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
+        // console.log($('.galerie img').eq(0).attr('src')); // eq ciblé une image en particulier pour récupérer l'image
+        // newSrc = $('.galerie img').eq(indexImg).attr('src');
         lightboxImg();
-        activePuce();
+        // $('.lightbox img').attr('src', newSrc);
+        console.log('index :' + indexImg);
+        console.log('prochain image :' + newSrc);
 
-    });
-
-    $('.lightbox li').click(function() {
-        indexImg = $('.lightbox li').index($(this));
-        lightboxImg();
-        activePuce();
-        console.log('puce cliqué' + indexImg);
     });
 });

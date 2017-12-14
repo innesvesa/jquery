@@ -815,6 +815,23 @@ body > footer {
     font-size: 1.5rem; }
   .lightbox figurecaption {
     padding: .5rem; }
+  .lightbox .list-puces {
+    padding: .3rem;
+    text-align: center;
+    border-top: 1px solid #d4d2d2; }
+    .lightbox .list-puces li {
+      display: inline-block;
+      list-style: none;
+      font-size: 1.5rem;
+      margin: .5rem;
+      border-top: 1px solid #212020;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      cursor: pointer; }
+    .lightbox .list-puces li:hover,
+    .lightbox .list-puces .puce-active {
+      background: #212020; }
 
 @media all and (min-width: 768px) {
   .lightbox .cadre {
