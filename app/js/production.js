@@ -152,12 +152,15 @@ $(function() {
  * étape 2 appeler changImg() et activePuce()
  * 
  * 
+ * AFFICHIER LES LEGENDES DANS LA LIGHTBOX
+ * étape 1 : récupéation la valeur de l'attr de data-legend
+ * étape 2 : mettre à jour le contenu textuel dans .lightbox fichcapti_on
  * 
  */
 
 
 $(function() {
-    let newSrc, nbImg, indexImg, listPuces;
+    let newSrc, nbImg, indexImg, listPuces, legendeImg;
 
     nbImg = $('.galerie img').length;
     // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
@@ -186,6 +189,14 @@ $(function() {
         list.eq(indexImg).addClass('puce-active');
         console.log('active puce : ' + indexImg);
     }
+
+    chargeLegende = () => {
+        let legendeImg = $('.galerie img').eq(indexImg).attr('data-legend');
+
+        console.log('legende :' + legendeImg);
+        console.log('index :' + indexImg);
+        $('.lightbox figcaption').text(legendeImg);
+    }
     generatePuces();
 
 
@@ -204,14 +215,15 @@ $(function() {
 
         indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
         lightboxImg();
+        chargeLegende()
         activePuce();
-
 
     });
 
     $('.cadre .icon-navigate_before').click(function() {
         indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
         lightboxImg();
+        chargeLegende()
         activePuce();
 
     });
@@ -219,7 +231,9 @@ $(function() {
     $('.lightbox li').click(function() {
         indexImg = $('.lightbox li').index($(this));
         lightboxImg();
+        chargeLegende()
         activePuce();
+
         console.log('puce cliqué' + indexImg);
     });
 });
