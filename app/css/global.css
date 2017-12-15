@@ -881,7 +881,8 @@ body > footer {
     color: #212020;
     margin: .5rem 0;
     font-size: 1rem;
-    line-height: 1.5rem; }
+    line-height: 1.5rem;
+    outline: none; }
   .formulaire [type="submit"] {
     cursor: pointer;
     transition: all .3s; }
@@ -909,7 +910,7 @@ body > footer {
     top: 50%;
     right: 1.5rem;
     transform: translate(0, -50%); }
-  .formulaire .icon-check {
+  .formulaire .icon-done {
     color: #0ED46B; }
   .formulaire .icon-close {
     color: #FC0937; }

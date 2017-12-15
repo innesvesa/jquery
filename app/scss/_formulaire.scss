@@ -11,6 +11,7 @@
             margin: .5rem 0;
             font-size: 1rem;
             line-height: 1.5rem;
+            outline: none; // pour voir ou se trouve le curseur
         }
         [type="submit"] {
             cursor: pointer;
@@ -45,7 +46,7 @@
             right: 1.5rem;
             transform: translate(0, -50%);
         }
-        .icon-check {
+        .icon-done {
             color: $color5;
         }
         .icon-close {

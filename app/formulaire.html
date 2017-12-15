@@ -17,38 +17,40 @@
 
     <main class="container">
         <!-- .formulaire -->
-        <form class="formulaire">
+        <!--  novalidate = pour que le navigateur ne puisse pas vérifier le foramalaire-->
+        <form class="formulaire" novalidate>
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <input type="text" name="prenom" value="" data-default="Votre prénom" required>
+                    <input type="text" name="prenom" value="" data-default="Votre prénom *" required>
                     <span class="icons icon-person "></span>
-                    <span class="validation icon-check"></span>
+                    <span class="validation"></span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <input type="text" name="nom" value="" data-default="Votre nom" required>
+                    <input type="text" name="nom" value="" data-default="Votre nom *" required>
                     <span class="icons icon-person "></span>
-                    <span class="validation icon-check"></span>
+                    <span class="validation"></span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <input type="email" name="email" value="" data-default="Votre email" required>
+                    <input type="email" name="email" value="" data-default="Votre email *" required>
                     <span class="icons ">@</span>
-                    <span class="validation icon-check"></span>
+                    <span class="validation"></span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <input type="tel" name="tel" value="" data-default="Votre téléphone" required>
+                    <!-- not required -->
+                    <input type="tel" name="tel" value="" data-default="Votre téléphone">
                     <span class="icons icon-phone "></span>
-                    <span class="validation icon-check"></span>
+                    <span class="validation"></span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12">
-                    <textarea name="message" data-default="Votre message" required></textarea>
+                    <textarea name="message" data-default="Votre message *" required></textarea>
                     <span class="icons icon-border_color"></span>
-                    <span class="validation icon-check"></span>
+                    <span class="validation"></span>
                 </div>
             </div>
 
