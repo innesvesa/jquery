@@ -39,47 +39,50 @@
 
 
 $(function() {
-    let acceptDefil = true;
-    let widthSlider = $('.slider').width();
 
-    $('.slider li').width(widthSlider);
-    $(window).resize(function() {
-        widthSlider = $('.slider').width();
+    (function() {
+        let acceptDefil = true;
+        let widthSlider = $('.slider').width();
+
         $('.slider li').width(widthSlider);
-    })
+        $(window).resize(function() {
+            widthSlider = $('.slider').width();
+            $('.slider li').width(widthSlider);
+        })
 
-    function slideNext() {
-        $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
-            $('.slider li:last').after($('.slider li:first'));
-            $(this).css({ 'left': 0 }); // $(this)==$('.slider ul')
-            acceptDefil = true;
-        });
-    }
-
-    function slidePrev() {
-        $('.slider ul').css({ 'left': -widthSlider });
-        $('.slider li:first').before($('.slider li:last'));
-        $('.slider ul').animate({ 'left': 0 }, 1000, function() {
-            acceptDefil = true;
-        });
-    }
-    let intervalID = setInterval(slidePrev, 3000);
-
-    $('.slider .icon-navigate_before').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID); // pour arrêter
-            slidePrev();
+        function slideNext() {
+            $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
+                $('.slider li:last').after($('.slider li:first'));
+                $(this).css({ 'left': 0 }); // $(this)==$('.slider ul')
+                acceptDefil = true;
+            });
         }
 
-    })
-    $('.slider .icon-navigate_next').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID); // pour arrêter
-            slideNext();
+        function slidePrev() {
+            $('.slider ul').css({ 'left': -widthSlider });
+            $('.slider li:first').before($('.slider li:last'));
+            $('.slider ul').animate({ 'left': 0 }, 1000, function() {
+                acceptDefil = true;
+            });
         }
-    })
+        let intervalID = setInterval(slidePrev, 3000);
+
+        $('.slider .icon-navigate_before').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID); // pour arrêter
+                slidePrev();
+            }
+
+        })
+        $('.slider .icon-navigate_next').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID); // pour arrêter
+                slideNext();
+            }
+        })
+    })();
 
     // clearInterval(intervalID); // pour arrêter
 });

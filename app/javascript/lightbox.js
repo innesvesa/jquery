@@ -61,80 +61,83 @@
 
 
 $(function() {
-    let newSrc, nbImg, indexImg, listPuces, legendeImg;
+    (function() {
 
-    nbImg = $('.galerie img').length;
-    // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
-    // pour évitéer les remontés de fonction hosting
-    // lightboxImg = function() { == lightboxImg = ()=> évite les remonté de fonction
-    lightboxImg = () => {
-        newSrc = $('.galerie img').eq(indexImg).attr('src');
-        $('.lightbox img').attr('src', newSrc);
-        console.log('index :' + indexImg);
-        console.log('prochain image :' + newSrc);
-    }
+        let newSrc, nbImg, indexImg, listPuces, legendeImg;
 
-    generatePuces = () => {
-        listPuces = '<ul class="list-puces">';
-        for (let i = 0; i < nbImg; i++) {
-            listPuces += '<li></li>';
+        nbImg = $('.galerie img').length;
+        // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
+        // pour évitéer les remontés de fonction hosting
+        // lightboxImg = function() { == lightboxImg = ()=> évite les remonté de fonction
+        lightboxImg = () => {
+            newSrc = $('.galerie img').eq(indexImg).attr('src');
+            $('.lightbox img').attr('src', newSrc);
+            console.log('index :' + indexImg);
+            console.log('prochain image :' + newSrc);
         }
-        listPuces += '</ul>';
-        // console.log(listPuces);
-        $('.lightbox .cadre').append(listPuces);
 
-    }
-    activePuce = () => {
-        let list = $('.lightbox ul li');
-        list.removeClass('puce-active');
-        list.eq(indexImg).addClass('puce-active');
-        console.log('active puce : ' + indexImg);
-    }
+        generatePuces = () => {
+            listPuces = '<ul class="list-puces">';
+            for (let i = 0; i < nbImg; i++) {
+                listPuces += '<li></li>';
+            }
+            listPuces += '</ul>';
+            // console.log(listPuces);
+            $('.lightbox .cadre').append(listPuces);
 
-    chargeLegende = () => {
-        let legendeImg = $('.galerie img').eq(indexImg).attr('data-legend');
+        }
+        activePuce = () => {
+            let list = $('.lightbox ul li');
+            list.removeClass('puce-active');
+            list.eq(indexImg).addClass('puce-active');
+            console.log('active puce : ' + indexImg);
+        }
 
-        console.log('legende :' + legendeImg);
-        console.log('index :' + indexImg);
-        $('.lightbox figcaption').text(legendeImg);
-    }
-    generatePuces();
+        chargeLegende = () => {
+            let legendeImg = $('.galerie img').eq(indexImg).attr('data-legend');
+
+            console.log('legende :' + legendeImg);
+            console.log('index :' + indexImg);
+            $('.lightbox figcaption').text(legendeImg);
+        }
+        generatePuces();
 
 
-    $('.galerie img').click(function() {
-        indexImg = $('.galerie img').index($(this)); // récupération de l'index de l'image
-        lightboxImg();
-        activePuce();
-        $('.lightbox').fadeIn().css({ 'display': 'flex' });
-    });
+        $('.galerie img').click(function() {
+            indexImg = $('.galerie img').index($(this)); // récupération de l'index de l'image
+            lightboxImg();
+            activePuce();
+            $('.lightbox').fadeIn().css({ 'display': 'flex' });
+        });
 
-    $('.cadre .icon-close').click(function() {
-        $('.lightbox').fadeOut();
-    });
+        $('.cadre .icon-close').click(function() {
+            $('.lightbox').fadeOut();
+        });
 
-    $('.cadre .icon-navigate_next').click(function() {
+        $('.cadre .icon-navigate_next').click(function() {
 
-        indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+            indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-    });
+        });
 
-    $('.cadre .icon-navigate_before').click(function() {
-        indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+        $('.cadre .icon-navigate_before').click(function() {
+            indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-    });
+        });
 
-    $('.lightbox li').click(function() {
-        indexImg = $('.lightbox li').index($(this));
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+        $('.lightbox li').click(function() {
+            indexImg = $('.lightbox li').index($(this));
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-        console.log('puce cliqué' + indexImg);
-    });
+            console.log('puce cliqué' + indexImg);
+        });
+    })();
 });

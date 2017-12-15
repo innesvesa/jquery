@@ -8,9 +8,11 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
  */
 
 $(function() {
-    $('body > header span').click(function() {
-        $('nav').slideToggle();
-    });
+    (function() {
+        $('body > header span').click(function() {
+            $('nav').slideToggle();
+        });
+    })();
 });
 /**
  *  Function slidePrev
@@ -53,47 +55,50 @@ $(function() {
 
 
 $(function() {
-    let acceptDefil = true;
-    let widthSlider = $('.slider').width();
 
-    $('.slider li').width(widthSlider);
-    $(window).resize(function() {
-        widthSlider = $('.slider').width();
+    (function() {
+        let acceptDefil = true;
+        let widthSlider = $('.slider').width();
+
         $('.slider li').width(widthSlider);
-    })
+        $(window).resize(function() {
+            widthSlider = $('.slider').width();
+            $('.slider li').width(widthSlider);
+        })
 
-    function slideNext() {
-        $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
-            $('.slider li:last').after($('.slider li:first'));
-            $(this).css({ 'left': 0 }); // $(this)==$('.slider ul')
-            acceptDefil = true;
-        });
-    }
-
-    function slidePrev() {
-        $('.slider ul').css({ 'left': -widthSlider });
-        $('.slider li:first').before($('.slider li:last'));
-        $('.slider ul').animate({ 'left': 0 }, 1000, function() {
-            acceptDefil = true;
-        });
-    }
-    let intervalID = setInterval(slidePrev, 3000);
-
-    $('.slider .icon-navigate_before').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID); // pour arrêter
-            slidePrev();
+        function slideNext() {
+            $('.slider ul').animate({ 'left': -widthSlider }, 1000, function() {
+                $('.slider li:last').after($('.slider li:first'));
+                $(this).css({ 'left': 0 }); // $(this)==$('.slider ul')
+                acceptDefil = true;
+            });
         }
 
-    })
-    $('.slider .icon-navigate_next').click(function() {
-        if (acceptDefil) {
-            acceptDefil = false;
-            clearInterval(intervalID); // pour arrêter
-            slideNext();
+        function slidePrev() {
+            $('.slider ul').css({ 'left': -widthSlider });
+            $('.slider li:first').before($('.slider li:last'));
+            $('.slider ul').animate({ 'left': 0 }, 1000, function() {
+                acceptDefil = true;
+            });
         }
-    })
+        let intervalID = setInterval(slidePrev, 3000);
+
+        $('.slider .icon-navigate_before').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID); // pour arrêter
+                slidePrev();
+            }
+
+        })
+        $('.slider .icon-navigate_next').click(function() {
+            if (acceptDefil) {
+                acceptDefil = false;
+                clearInterval(intervalID); // pour arrêter
+                slideNext();
+            }
+        })
+    })();
 
     // clearInterval(intervalID); // pour arrêter
 });
@@ -160,80 +165,122 @@ $(function() {
 
 
 $(function() {
-    let newSrc, nbImg, indexImg, listPuces, legendeImg;
+    (function() {
 
-    nbImg = $('.galerie img').length;
-    // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
-    // pour évitéer les remontés de fonction hosting
-    // lightboxImg = function() { == lightboxImg = ()=> évite les remonté de fonction
-    lightboxImg = () => {
-        newSrc = $('.galerie img').eq(indexImg).attr('src');
-        $('.lightbox img').attr('src', newSrc);
-        console.log('index :' + indexImg);
-        console.log('prochain image :' + newSrc);
-    }
+        let newSrc, nbImg, indexImg, listPuces, legendeImg;
 
-    generatePuces = () => {
-        listPuces = '<ul class="list-puces">';
-        for (let i = 0; i < nbImg; i++) {
-            listPuces += '<li></li>';
+        nbImg = $('.galerie img').length;
+        // déclaration de la fonction en local . tant quelle n'est créer elle ne peut utilé 
+        // pour évitéer les remontés de fonction hosting
+        // lightboxImg = function() { == lightboxImg = ()=> évite les remonté de fonction
+        lightboxImg = () => {
+            newSrc = $('.galerie img').eq(indexImg).attr('src');
+            $('.lightbox img').attr('src', newSrc);
+            console.log('index :' + indexImg);
+            console.log('prochain image :' + newSrc);
         }
-        listPuces += '</ul>';
-        // console.log(listPuces);
-        $('.lightbox .cadre').append(listPuces);
 
-    }
-    activePuce = () => {
-        let list = $('.lightbox ul li');
-        list.removeClass('puce-active');
-        list.eq(indexImg).addClass('puce-active');
-        console.log('active puce : ' + indexImg);
-    }
+        generatePuces = () => {
+            listPuces = '<ul class="list-puces">';
+            for (let i = 0; i < nbImg; i++) {
+                listPuces += '<li></li>';
+            }
+            listPuces += '</ul>';
+            // console.log(listPuces);
+            $('.lightbox .cadre').append(listPuces);
 
-    chargeLegende = () => {
-        let legendeImg = $('.galerie img').eq(indexImg).attr('data-legend');
+        }
+        activePuce = () => {
+            let list = $('.lightbox ul li');
+            list.removeClass('puce-active');
+            list.eq(indexImg).addClass('puce-active');
+            console.log('active puce : ' + indexImg);
+        }
 
-        console.log('legende :' + legendeImg);
-        console.log('index :' + indexImg);
-        $('.lightbox figcaption').text(legendeImg);
-    }
-    generatePuces();
+        chargeLegende = () => {
+            let legendeImg = $('.galerie img').eq(indexImg).attr('data-legend');
+
+            console.log('legende :' + legendeImg);
+            console.log('index :' + indexImg);
+            $('.lightbox figcaption').text(legendeImg);
+        }
+        generatePuces();
 
 
-    $('.galerie img').click(function() {
-        indexImg = $('.galerie img').index($(this)); // récupération de l'index de l'image
-        lightboxImg();
-        activePuce();
-        $('.lightbox').fadeIn().css({ 'display': 'flex' });
-    });
+        $('.galerie img').click(function() {
+            indexImg = $('.galerie img').index($(this)); // récupération de l'index de l'image
+            lightboxImg();
+            activePuce();
+            $('.lightbox').fadeIn().css({ 'display': 'flex' });
+        });
 
-    $('.cadre .icon-close').click(function() {
-        $('.lightbox').fadeOut();
-    });
+        $('.cadre .icon-close').click(function() {
+            $('.lightbox').fadeOut();
+        });
 
-    $('.cadre .icon-navigate_next').click(function() {
+        $('.cadre .icon-navigate_next').click(function() {
 
-        indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+            indexImg = (indexImg + 1) % nbImg; // if au dessus donne le même résultat modulo
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-    });
+        });
 
-    $('.cadre .icon-navigate_before').click(function() {
-        indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+        $('.cadre .icon-navigate_before').click(function() {
+            indexImg = ((indexImg - 1) + nbImg) % nbImg; // if au dessus donne le même résultat
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-    });
+        });
 
-    $('.lightbox li').click(function() {
-        indexImg = $('.lightbox li').index($(this));
-        lightboxImg();
-        chargeLegende()
-        activePuce();
+        $('.lightbox li').click(function() {
+            indexImg = $('.lightbox li').index($(this));
+            lightboxImg();
+            chargeLegende()
+            activePuce();
 
-        console.log('puce cliqué' + indexImg);
-    });
+            console.log('puce cliqué' + indexImg);
+        });
+    })();
+});
+/**
+ * OUVRI UN ITEM ET FERME LES AUTRES
+ * étape 1 : quand on clique sur un h1, si celui ci n'a pas la class active
+ * on ferme tous les p et on ouvre le p suivant le h1 cliqué
+ * - si il à la class active, c'est qu'il est déjà ouvert donc on fait rien
+ * 
+ * étape 2 : on retire la class active de tous les h1 et on ajoute la class active sur 
+ * le h1 cliqué
+ * étape 3 : on retire l'icon-down sur tous les h1 et on ajoute l'icon-right sur tous les h1
+ * étape 4 : on alterne les class icon-down et icon-right sur this h1 (celui cliqué)
+ */
+
+'use strict';
+
+$(function() {
+    (function() { /** equivalent avec un namespace, les var sont reconus uniquement ds cette environnement */
+        let question, answer;
+        question = $('.accordeon h1');
+        answer = $('.accordeon p');
+
+        question.click(function() {
+            if (!$(this).hasClass('active')) { //s'il y n'a pas la class active
+                //étape 1
+                answer.slideUp(600);
+                $(this).next('p').slideDown(200);
+                // étape 2
+                question.removeClass('active');
+                $(this).addClass('active');
+                //étape 3
+                question.find('span').removeClass('icon-arrow_drop_down').addClass('icon-navigate_next');
+                //étape 4
+                $(this).find('span').toggleClass('icon-arrow_drop_down icon-navigate_next') //le toggleClass va alterner entre les 2 icones
+
+            }
+        });
+    })();
+
+
 });

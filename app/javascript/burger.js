@@ -4,7 +4,9 @@
  */
 
 $(function() {
-    $('body > header span').click(function() {
-        $('nav').slideToggle();
-    });
+    (function() {
+        $('body > header span').click(function() {
+            $('nav').slideToggle();
+        });
+    })();
 });

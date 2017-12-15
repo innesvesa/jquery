@@ -840,3 +840,76 @@ body > footer {
 @media all and (min-width: 1200px) {
   .lightbox .cadre {
     width: 50%; } }
+
+.accordeon {
+  padding: 2rem 0; }
+  .accordeon h1 {
+    border-radius: 5px;
+    border: 1px solid #bbb8b8;
+    background: #edecec;
+    color: #212020;
+    padding: .6rem .8rem;
+    margin-bottom: 0;
+    font-size: 1.33333rem;
+    font-weight: lighter;
+    cursor: pointer; }
+    .accordeon h1 span {
+      display: inline-block;
+      width: 1rem; }
+  .accordeon p {
+    border: 1px solid #a19f9f;
+    padding: 1rem .6rem;
+    color: #212020;
+    margin-bottom: 0;
+    border-radius: 0 0 5px 5px;
+    display: none; }
+    .accordeon p:nth-of-type(1) {
+      display: block; }
+  .accordeon .active {
+    border-radius: 5px 5px 0 0;
+    color: #169A9F;
+    cursor: default; }
+
+.formulaire {
+  padding: 2rem; }
+  .formulaire input,
+  .formulaire textarea {
+    width: 100%;
+    padding: .8rem;
+    border-radius: 3px;
+    border: 1px solid #d4d2d2;
+    color: #212020;
+    margin: .5rem 0;
+    font-size: 1rem;
+    line-height: 1.5rem; }
+  .formulaire [type="submit"] {
+    cursor: pointer;
+    transition: all .3s; }
+    .formulaire [type="submit"]:hover {
+      background: #169A9F;
+      color: #fff; }
+  .formulaire .row > div {
+    position: relative; }
+  .formulaire .icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #bbb8b8;
+    padding: .8rem;
+    margin: .5rem .9rem;
+    border: 1px solid #d4d2d2;
+    border-radius: 3px 0 0 3px;
+    color: #3b3939;
+    font-size: 1rem;
+    line-height: 1.5rem; }
+  .formulaire [data-default] {
+    padding-left: 3rem; }
+  .formulaire .validation {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translate(0, -50%); }
+  .formulaire .icon-check {
+    color: #0ED46B; }
+  .formulaire .icon-close {
+    color: #FC0937; }
